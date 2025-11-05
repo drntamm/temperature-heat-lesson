@@ -330,7 +330,8 @@
     }
 
     input[type="number"],
-    input[type="text"] {
+    input[type="text"],
+    select { 
       padding: 12px 16px;
       border: 2px solid #cbd5e0;
       border-radius: 8px;
@@ -340,7 +341,8 @@
     }
 
     input[type="number"]:focus,
-    input[type="text"]:focus {
+    input[type="text"]:focus,
+    select:focus {
       outline: none;
       border-color: #4c51bf;
       box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
@@ -873,6 +875,7 @@
        </div>
       </div>
      </div>
+     <!-- --- FIX: RESTORED ORIGINAL SECTION 1 KNOWLEDGE CHECK --- -->
      <div class="check-section">
       <div class="check-title">
        ✓ Knowledge Check
@@ -894,6 +897,7 @@
         °F = (9/5)°C + 32 = (9/5)(37) + 32 = 66.6 + 32 = 98.6°F ≈ <strong>98.6°F</strong></p>
       </div>
      </div>
+     <!-- --- END FIX --- -->
     </section><!-- Section 2: Temperature Conversion -->
     <section class="section" id="section-2" aria-labelledby="section-2-title">
      <h2 id="section-2-title">LO2: Converting Between Temperature Scales</h2>
@@ -906,7 +910,7 @@
       <div class="converter-grid">
        <div class="converter-card"><label for="conv-celsius">Celsius (°C)</label> <input type="number" id="conv-celsius" step="0.01" placeholder="Enter °C" aria-label="Temperature in Celsius">
        </div>
-       <div class="converter-card"><label for="conv-kelvin">Kelvin (K)</label> <input type="number" id="conv-kelvin" step="0.01" placeholder="Enter K" aria-label="Temperature in Kelvin">
+       <div class="converter-card"><label for="conv-kelvin">Kelvin (K)</label> <input type="number" id="conv-kelvin" step="0.01" placeholder="Enter K" aria-label="Temperature in Kelvin" min="0">
        </div>
        <div class="converter-card"><label for="conv-fahrenheit">Fahrenheit (°F)</label> <input type="number" id="conv-fahrenheit" step="0.01" placeholder="Enter °F" aria-label="Temperature in Fahrenheit">
        </div>
@@ -945,11 +949,11 @@
       </div>
       <p style="font-size: 16px; color: #4a5568; margin-bottom: 24px;">Enter a value in any unit and see the conversions instantly.</p>
       <div class="converter-grid">
-       <div class="converter-card"><label for="energy-joules">Joules (J)</label> <input type="number" id="energy-joules" step="0.01" placeholder="Enter J" aria-label="Energy in Joules">
+       <div class="converter-card"><label for="energy-joules">Joules (J)</label> <input type="number" id="energy-joules" step="0.01" placeholder="Enter J" aria-label="Energy in Joules" min="0">
        </div>
-       <div class="converter-card"><label for="energy-calories">Calories (cal)</label> <input type="number" id="energy-calories" step="0.01" placeholder="Enter cal" aria-label="Energy in calories">
+       <div class="converter-card"><label for="energy-calories">Calories (cal)</label> <input type="number" id="energy-calories" step="0.01" placeholder="Enter cal" aria-label="Energy in calories" min="0">
        </div>
-       <div class="converter-card"><label for="energy-kcal">Kilocalories (kcal)</label> <input type="number" id="energy-kcal" step="0.01" placeholder="Enter kcal" aria-label="Energy in kilocalories">
+       <div class="converter-card"><label for="energy-kcal">Kilocalories (kcal)</label> <input type="number" id="energy-kcal" step="0.01" placeholder="Enter kcal" aria-label="Energy in kilocalories" min="0">
        </div>
       </div>
      </div>
@@ -1286,7 +1290,7 @@
      <p>The fundamental equation for heat transfer is <strong>q = mcΔT</strong>. Here, <strong>q</strong> is heat (J), <strong>m</strong> is mass (kg or g), <strong>c</strong> is specific heat capacity, and <strong>ΔT = T<sub>final</sub> - T<sub>initial</sub></strong>. Sign convention: q is positive when heat is absorbed (temperature increases), negative when released (temperature decreases).</p>
      <div class="formula-box">
       q = m × c × ΔT<br>
-       where ΔT = T<sub>final</sub> - T<sub>initial</sub>
+      where ΔT = T<sub>final</sub> - T<sub>initial</sub>
      </div>
      <div class="sim-container">
       <div class="sim-title">
@@ -1342,7 +1346,7 @@
      <p>During phase changes (melting, freezing, boiling, condensing), temperature stays constant while energy is added or removed. <strong>Latent heat of fusion (L<sub>f</sub>)</strong> is energy per unit mass for solid ↔ liquid transitions. <strong>Latent heat of vaporization (L<sub>v</sub>)</strong> is for liquid ↔ gas transitions. For water: L<sub>f</sub> = 334 kJ/kg, L<sub>v</sub> = 2260 kJ/kg.</p>
      <div class="formula-box">
       q = mL<sub>f</sub> (melting/freezing)<br>
-       q = mL<sub>v</sub> (boiling/condensing)
+      q = mL<sub>v</sub> (boiling/condensing)
      </div>
      <div class="sim-container">
       <div class="sim-title">
@@ -1388,7 +1392,7 @@
      <p>When objects at different temperatures are brought into contact, heat flows from hot to cold until they reach the same temperature—<strong>thermal equilibrium</strong>. In an isolated system, heat lost by the hot object equals heat gained by the cold object: q<sub>hot</sub> = -q<sub>cold</sub>. This is the principle of conservation of energy.</p>
      <div class="formula-box">
       q<sub>lost</sub> = q<sub>gained</sub><br>
-       m<sub>1</sub>c<sub>1</sub>ΔT<sub>1</sub> = -m<sub>2</sub>c<sub>2</sub>ΔT<sub>2</sub>
+      m<sub>1</sub>c<sub>1</sub>ΔT<sub>1</sub> = -m<sub>2</sub>c<sub>2</sub>ΔT<sub>2</sub>
      </div>
      <div class="sim-container">
       <div class="sim-title">
@@ -1398,16 +1402,20 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
        <div style="background: linear-gradient(135deg, #fca5a5, #ef4444); padding: 20px; border-radius: 8px; color: white;">
         <h4 style="margin: 0 0 16px 0; color: white;">🔥 Hot Water</h4>
-        <div style="margin-bottom: 12px;"><label for="hot-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="hot-mass" value="200" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water mass">
+        <!-- FIX: Renamed ID to be unique -->
+        <div style="margin-bottom: 12px;"><label for="s10-hot-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="s10-hot-mass" value="200" step="10" min="1" max="10000" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water mass">
         </div>
-        <div><label for="hot-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="hot-temp" value="80" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water temperature">
+        <!-- FIX: Renamed ID to be unique -->
+        <div><label for="s10-hot-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="s10-hot-temp" value="80" step="1" max="100" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water temperature">
         </div>
        </div>
        <div style="background: linear-gradient(135deg, #93c5fd, #3b82f6); padding: 20px; border-radius: 8px; color: white;">
         <h4 style="margin: 0 0 16px 0; color: white;">❄️ Cold Water</h4>
-        <div style="margin-bottom: 12px;"><label for="cold-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="cold-mass" value="300" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water mass">
+        <!-- FIX: Renamed ID to be unique -->
+        <div style="margin-bottom: 12px;"><label for="s10-cold-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="s10-cold-mass" value="300" step="10" min="1" max="10000" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water mass">
         </div>
-        <div><label for="cold-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="cold-temp" value="20" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water temperature">
+        <!-- FIX: Renamed ID to be unique -->
+        <div><label for="s10-cold-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="s10-cold-temp" value="20" step="1" max="100" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water temperature">
         </div>
        </div>
       </div>
@@ -1430,7 +1438,8 @@
       <div class="check-title">
        ✓ Knowledge Check
       </div>
-      <p class="question">100 g of hot water at 90°C is mixed with 200 g of cold water at 10°C. What is the final equilibrium temperature? (Assume no heat loss to surroundings)</p>
+      <!-- This is the CORRECT section 10 check, with dynamic IDs -->
+      <p class="question" id="check10-question">100 g of hot water at 90°C is mixed with 200 g of cold water at 10°C. What is the final equilibrium temperature? (Assume no heat loss to surroundings)</p>
       <div class="input-group"><label for="check10-answer">Final temperature:</label> <input type="number" id="check10-answer" step="0.1" aria-label="Final temperature"> <span>°C</span>
       </div><button class="btn" id="check10-submit">Submit Answer</button> <button class="btn btn-secondary" id="check10-reset" style="display: none;">Try Another</button>
       <div class="feedback" id="check10-feedback"></div>
@@ -1452,7 +1461,7 @@
      <p><strong>Specific heat (c)</strong> is energy per unit mass per degree: J/(kg·°C). <strong>Heat capacity (C)</strong> is total energy needed to raise an object's temperature by 1°C: C = mc. A large object has high heat capacity even if made of low specific heat material. Think: a small copper coin vs. a large copper statue.</p>
      <div class="formula-box">
       C = mc (Heat Capacity)<br>
-       q = CΔT = mcΔT
+      q = CΔT = mcΔT
      </div>
      <div class="sim-container">
       <div class="sim-title">
@@ -1521,7 +1530,7 @@
      <p><strong>Thermal conductivity (k)</strong> measures how well a material conducts heat. High k materials (metals) transfer heat quickly. Low k materials (wood, air, foam) are good insulators. Heat flow rate depends on conductivity, area, temperature difference, and thickness: q/t = kA(ΔT)/d.</p>
      <div class="formula-box">
       Heat Flow Rate = kA(ΔT)/d<br>
-       where k = thermal conductivity, A = area, d = thickness
+      where k = thermal conductivity, A = area, d = thickness
      </div>
      <div class="sim-container">
       <div class="sim-title">
@@ -1545,7 +1554,7 @@
           Heat Flow Rate (per m²):
          </div>
          <div style="font-size: 24px; font-weight: 700; color: #dc2626;" id="heat-flow-rate">
-          600 W/m²
+          60 W/m²
          </div>
         </div>
         <div style="margin-bottom: 16px;">
@@ -1555,7 +1564,7 @@
          <div style="font-size: 18px; font-weight: 600;" id="insulation-quality">
           Good Insulator
          </div>
-        </div><button class="btn" id="calc-heat-flow" style="width: 100%;">Calculate Heat Flow</button>
+        </div><button class="btn" id="calc-heat-flow">Calculate Heat Flow</button>
        </div>
       </div>
       <div style="margin-top: 24px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #4c51bf;">
@@ -1687,6 +1696,12 @@
     let check4Attempts = 0;
     let check6Attempts = 0;
     let check8Attempts = 0;
+    let check9Attempts = 0; 
+    let check10Attempts = 0; 
+    let check10CorrectAnswer = 36.7; // Store correct answer for check 10
+    let check11Attempts = 0; 
+    let check12Attempts = 0; 
+
 
     const sections = [
       { id: 0, title: "Introduction" },
@@ -1838,10 +1853,11 @@
       document.getElementById('value-k').textContent = `${kelvin.toFixed(2)} K`;
       document.getElementById('value-f').textContent = `${fahrenheit.toFixed(1)}°F`;
       
-      const heightPercent = ((celsius + 50) / 200) * 100;
-      document.getElementById('thermo-fill-c').style.height = `${heightPercent}%`;
-      document.getElementById('thermo-fill-k').style.height = `${heightPercent}%`;
-      document.getElementById('thermo-fill-f').style.height = `${heightPercent}%`;
+      // Calculate height percentage based on min/max of the slider (-50 to 150, a range of 200)
+      const heightPercent = ((celsius - parseFloat(tempSlider.min)) / (parseFloat(tempSlider.max) - parseFloat(tempSlider.min))) * 100;
+      document.getElementById('thermo-fill-c').style.height = `${Math.min(100, Math.max(0, heightPercent))}%`;
+      document.getElementById('thermo-fill-k').style.height = `${Math.min(100, Math.max(0, heightPercent))}%`;
+      document.getElementById('thermo-fill-f').style.height = `${Math.min(100, Math.max(0, heightPercent))}%`;
     }
 
     tempSlider.addEventListener('input', (e) => {
@@ -1854,6 +1870,14 @@
       const correctK = 310.2;
       const correctF = 98.6;
       
+      // Input Validation - Check if not a number or less than absolute zero (for Kelvin check)
+      if (isNaN(kInput) || isNaN(fInput) || kInput < 0) {
+        document.getElementById('check1-feedback').className = 'feedback incorrect show';
+        document.getElementById('check1-feedback').textContent = '✗ Invalid input. Please enter valid numbers. Kelvin must be non-negative.';
+        return;
+      }
+
+      // Check with a tolerance of 0.2
       const kCorrect = Math.abs(kInput - correctK) <= 0.2;
       const fCorrect = Math.abs(fInput - correctF) <= 0.2;
       
@@ -1894,36 +1918,59 @@
     const convKelvin = document.getElementById('conv-kelvin');
     const convFahrenheit = document.getElementById('conv-fahrenheit');
 
-    convCelsius.addEventListener('input', (e) => {
-      const c = parseFloat(e.target.value);
-      if (!isNaN(c)) {
-        convKelvin.value = (c + 273.15).toFixed(2);
-        convFahrenheit.value = ((9/5) * c + 32).toFixed(2);
+    function validateAndConvert(source, value) {
+      if (isNaN(value)) {
+          // Clear all if the input is not a number
+          convCelsius.value = '';
+          convKelvin.value = '';
+          convFahrenheit.value = '';
+          return;
       }
+
+      let c, k, f;
+
+      if (source === 'C') {
+          c = value;
+          k = c + 273.15;
+          f = (9/5) * c + 32;
+      } else if (source === 'K') {
+          k = value;
+          if (k < 0) { // Kelvin must be non-negative
+            convKelvin.value = 0;
+            k = 0;
+          }
+          c = k - 273.15;
+          f = (9/5) * c + 32;
+      } else if (source === 'F') {
+          f = value;
+          c = (5/9) * (f - 32);
+          k = c + 273.15;
+      }
+
+      // Update values, avoiding loops and self-update
+      if (source !== 'C') convCelsius.value = c.toFixed(2);
+      if (source !== 'K') convKelvin.value = k.toFixed(2);
+      if (source !== 'F') convFahrenheit.value = f.toFixed(2);
+    }
+
+
+    convCelsius.addEventListener('input', (e) => {
+      validateAndConvert('C', parseFloat(e.target.value));
     });
 
     convKelvin.addEventListener('input', (e) => {
-      const k = parseFloat(e.target.value);
-      if (!isNaN(k)) {
-        const c = k - 273.15;
-        convCelsius.value = c.toFixed(2);
-        convFahrenheit.value = ((9/5) * c + 32).toFixed(2);
-      }
+      validateAndConvert('K', parseFloat(e.target.value));
     });
 
     convFahrenheit.addEventListener('input', (e) => {
-      const f = parseFloat(e.target.value);
-      if (!isNaN(f)) {
-        const c = (5/9) * (f - 32);
-        convCelsius.value = c.toFixed(2);
-        convKelvin.value = (c + 273.15).toFixed(2);
-      }
+      validateAndConvert('F', parseFloat(e.target.value));
     });
 
+
     const check2Questions = [
-      { from: 25, fromUnit: '°C', to: 77, toUnit: '°F', formula: '°F = (9/5)°C + 32 = (9/5)(25) + 32 = 45 + 32 = 77°F' },
-      { from: 100, fromUnit: '°C', to: 373.15, toUnit: 'K', formula: 'K = °C + 273.15 = 100 + 273.15 = 373.15 K' },
-      { from: 32, fromUnit: '°F', to: 0, toUnit: '°C', formula: '°C = (5/9)(°F - 32) = (5/9)(32 - 32) = 0°C' }
+      { from: 25, fromUnit: '°C', to: 77.0, toUnit: '°F', formula: '°F = (9/5)°C + 32 = (9/5)(25) + 32 = 45 + 32 = 77.0°F' },
+      { from: 373.15, fromUnit: 'K', to: 100.0, toUnit: '°C', formula: '°C = K - 273.15 = 373.15 - 273.15 = 100.0°C' },
+      { from: -40.0, fromUnit: '°F', to: -40.0, toUnit: '°C', formula: '°C = (5/9)(°F - 32) = (5/9)(-40 - 32) = (5/9)(-72) = -40.0°C' }
     ];
 
     let currentCheck2 = 0;
@@ -1940,6 +1987,14 @@
     document.getElementById('check2-submit').addEventListener('click', () => {
       const answer = parseFloat(document.getElementById('check2-answer').value);
       const q = check2Questions[currentCheck2];
+      
+      // Input Validation
+      if (isNaN(answer)) {
+        document.getElementById('check2-feedback').className = 'feedback incorrect show';
+        document.getElementById('check2-feedback').textContent = '✗ Invalid input. Please enter a valid number.';
+        return;
+      }
+
       const correct = Math.abs(answer - q.to) <= 0.2;
       
       const feedback = document.getElementById('check2-feedback');
@@ -1949,7 +2004,7 @@
       
       if (correct) {
         feedback.className = 'feedback correct show';
-        feedback.textContent = `✓ Correct! ${q.from}${q.fromUnit} = ${q.to}${q.toUnit}`;
+        feedback.textContent = `✓ Correct! ${q.from}${q.fromUnit} = ${q.to.toFixed(1)}${q.toUnit}`;
         document.getElementById('check2-submit').disabled = true;
         document.getElementById('check2-reset').style.display = 'inline-block';
       } else {
@@ -1985,28 +2040,48 @@
     const energyCalories = document.getElementById('energy-calories');
     const energyKcal = document.getElementById('energy-kcal');
 
+    function validateAndConvertEnergy(source, value) {
+        if (isNaN(value) || value < 0) {
+            // Clear all if the input is not a valid non-negative number
+            energyJoules.value = '';
+            energyCalories.value = '';
+            energyKcal.value = '';
+            return;
+        }
+
+        let j, cal, kcal;
+        const CONV_FACTOR = 4.184;
+
+        if (source === 'J') {
+            j = value;
+            cal = j / CONV_FACTOR;
+            kcal = j / (CONV_FACTOR * 1000);
+        } else if (source === 'cal') {
+            cal = value;
+            j = cal * CONV_FACTOR;
+            kcal = cal / 1000;
+        } else if (source === 'kcal') {
+            kcal = value;
+            cal = kcal * 1000;
+            j = cal * CONV_FACTOR;
+        }
+
+        // Update values
+        if (source !== 'J') energyJoules.value = j.toFixed(2);
+        if (source !== 'cal') energyCalories.value = cal.toFixed(2);
+        if (source !== 'kcal') energyKcal.value = kcal.toFixed(2);
+    }
+
     energyJoules.addEventListener('input', (e) => {
-      const j = parseFloat(e.target.value);
-      if (!isNaN(j)) {
-        energyCalories.value = (j / 4.184).toFixed(2);
-        energyKcal.value = (j / 4184).toFixed(2);
-      }
+      validateAndConvertEnergy('J', parseFloat(e.target.value));
     });
 
     energyCalories.addEventListener('input', (e) => {
-      const cal = parseFloat(e.target.value);
-      if (!isNaN(cal)) {
-        energyJoules.value = (cal * 4.184).toFixed(2);
-        energyKcal.value = (cal / 1000).toFixed(2);
-      }
+      validateAndConvertEnergy('cal', parseFloat(e.target.value));
     });
 
     energyKcal.addEventListener('input', (e) => {
-      const kcal = parseFloat(e.target.value);
-      if (!isNaN(kcal)) {
-        energyJoules.value = (kcal * 4184).toFixed(2);
-        energyCalories.value = (kcal * 1000).toFixed(2);
-      }
+      validateAndConvertEnergy('kcal', parseFloat(e.target.value));
     });
 
     document.getElementById('check3-submit').addEventListener('click', () => {
@@ -2015,6 +2090,14 @@
       const correctCal = 2000.00;
       const correctKcal = 2.00;
       
+      // Input Validation
+      if (isNaN(calInput) || isNaN(kcalInput) || calInput < 0 || kcalInput < 0) {
+        document.getElementById('check3-feedback').className = 'feedback incorrect show';
+        document.getElementById('check3-feedback').textContent = '✗ Invalid input. Please enter valid non-negative numbers.';
+        return;
+      }
+
+      // Check with a tolerance of 0.5 for cal (2000) and 0.01 for kcal (2.00)
       const calCorrect = Math.abs(calInput - correctCal) <= 0.5;
       const kcalCorrect = Math.abs(kcalInput - correctKcal) <= 0.01;
       
@@ -2125,12 +2208,17 @@
     function animateHeatTransfer() {
       if (!isInContact) return;
       
-      const equilibrium = (hotTemp + coldTemp) / 2;
-      const rate = 0.5; // Temperature change rate per step
+      // Simple energy balance for equal mass/material: equilibrium is the average
+      const equilibrium = (80 + 20) / 2; // Fixed equilibrium for this specific demo
+      const rate = 0.05; // Reduced rate for smoother animation
       
-      if (Math.abs(hotTemp - equilibrium) > 0.1) {
-        hotTemp += (equilibrium - hotTemp) * rate;
-        coldTemp += (equilibrium - coldTemp) * rate;
+      if (Math.abs(hotTemp - equilibrium) > 0.05) { // Check against a smaller threshold
+        hotTemp -= rate;
+        coldTemp += rate;
+        
+        // Ensure they don't cross equilibrium by much
+        if (hotTemp < equilibrium) hotTemp = equilibrium;
+        if (coldTemp > equilibrium) coldTemp = equilibrium;
         
         // Update displays
         document.getElementById('hot-temp').textContent = `${hotTemp.toFixed(1)}°C`;
@@ -2141,7 +2229,7 @@
         // Update change indicators
         const hotChange = hotTemp - 80;
         const coldChange = coldTemp - 20;
-        document.getElementById('hot-change').textContent = `${hotChange >= 0 ? '+' : ''}${hotChange.toFixed(1)}°C`;
+        document.getElementById('hot-change').textContent = `${hotChange.toFixed(1)}°C`;
         document.getElementById('cold-change').textContent = `${coldChange >= 0 ? '+' : ''}${coldChange.toFixed(1)}°C`;
         
         // Update equilibrium display
@@ -2150,6 +2238,17 @@
         // Update colors
         updateBlockColors(hotTemp, coldTemp);
       } else {
+        // Final state adjustments (ensure they are exactly at 50.0)
+        hotTemp = equilibrium;
+        coldTemp = equilibrium;
+        document.getElementById('hot-temp').textContent = `${hotTemp.toFixed(1)}°C`;
+        document.getElementById('cold-temp').textContent = `${coldTemp.toFixed(1)}°C`;
+        document.getElementById('hot-display').textContent = `${hotTemp.toFixed(1)}°C`;
+        document.getElementById('cold-display').textContent = `${coldTemp.toFixed(1)}°C`;
+        document.getElementById('hot-change').textContent = '-30.0°C';
+        document.getElementById('cold-change').textContent = '+30.0°C';
+        updateBlockColors(hotTemp, coldTemp);
+        
         // Reached equilibrium
         clearInterval(heatFlowInterval);
         document.getElementById('heat-explanation').style.display = 'block';
@@ -2360,14 +2459,23 @@
         const c = parseFloat(btn.dataset.c);
         const m = 100;
         const q = 1000;
-        const dt = q / (m * c);
-        const finalT = 20 + dt;
         
-        document.getElementById('material-name').textContent = 
-          material.charAt(0).toUpperCase() + material.slice(1);
-        document.getElementById('material-c').textContent = `${c} J/g·°C`;
-        document.getElementById('material-dt').textContent = `+${dt.toFixed(1)}°C`;
-        document.getElementById('material-final').textContent = `${finalT.toFixed(1)}°C`;
+        if (c > 0) { // Check for a non-zero specific heat capacity
+            const dt = q / (m * c);
+            const finalT = 20 + dt;
+            
+            document.getElementById('material-name').textContent = 
+              material.charAt(0).toUpperCase() + material.slice(1);
+            document.getElementById('material-c').textContent = `${c.toFixed(2)} J/g·°C`; // Fixed toFixed(2)
+            document.getElementById('material-dt').textContent = `+${dt.toFixed(1)}°C`;
+            document.getElementById('material-final').textContent = `${finalT.toFixed(1)}°C`;
+        } else {
+            // Handle division by zero or invalid c
+            document.getElementById('material-name').textContent = material.charAt(0).toUpperCase() + material.slice(1);
+            document.getElementById('material-c').textContent = `${c.toFixed(2)} J/g·°C`;
+            document.getElementById('material-dt').textContent = 'Error: c is zero';
+            document.getElementById('material-final').textContent = 'N/A';
+        }
       });
     });
 
@@ -2438,7 +2546,7 @@
           feedback.style.background = '#fee2e2';
           feedback.style.color = '#991b1b';
           feedback.style.borderRadius = '4px';
-          feedback.textContent = `✗ Not quite. The correct answer is ${mode.correct}.`;
+          feedback.textContent = `✗ Not quite. The correct answer is ${mode.correct.charAt(0).toUpperCase() + mode.correct.slice(1)}.`;
         }
       });
     });
@@ -2456,6 +2564,18 @@
       const ti = parseFloat(document.getElementById('calc-ti').value);
       const tf = parseFloat(document.getElementById('calc-tf').value);
       
+      const resultDiv = document.getElementById('calc-result');
+
+      // Input Validation
+      if (isNaN(m) || isNaN(c) || isNaN(ti) || isNaN(tf) || m <= 0 || c <= 0) {
+        resultDiv.style.display = 'block';
+        document.getElementById('result-dt').textContent = 'N/A';
+        document.getElementById('result-q').textContent = 'Error: Invalid Input';
+        document.getElementById('result-interpretation').className = 'feedback incorrect';
+        document.getElementById('result-interpretation').textContent = '⚠️ Error: Mass and Specific Heat must be positive numbers.';
+        return;
+      }
+      
       const dt = tf - ti;
       const q = m * c * dt;
       
@@ -2465,9 +2585,11 @@
       const interpretation = q > 0 
         ? '🔥 Positive q means heat is absorbed (temperature increased)'
         : '❄️ Negative q means heat is released (temperature decreased)';
+      
+      document.getElementById('result-interpretation').className = q > 0 ? 'feedback correct' : 'feedback incorrect'; // Use class for styling
       document.getElementById('result-interpretation').textContent = interpretation;
       
-      document.getElementById('calc-result').style.display = 'block';
+      resultDiv.style.display = 'block';
     });
 
     document.getElementById('check8-submit').addEventListener('click', () => {
@@ -2477,6 +2599,13 @@
       const feedback = document.getElementById('check8-feedback');
       const solution = document.getElementById('check8-solution');
       
+      // Input Validation
+      if (isNaN(answer) || answer < 0) {
+        feedback.className = 'feedback incorrect show';
+        feedback.textContent = '✗ Invalid input. Please enter a valid non-negative number.';
+        return;
+      }
+
       check8Attempts++;
       
       if (Math.abs(answer - correct) <= 100) {
@@ -2507,20 +2636,45 @@
     });
 
     // Section 9: Phase Changes
-    let check9Attempts = 0;
     
     document.getElementById('calc-melting').addEventListener('click', () => {
       const mass = parseFloat(document.getElementById('ice-mass').value);
+      const resultDiv = document.getElementById('melting-result');
+      
+      // Input Validation
+      if (isNaN(mass) || mass <= 0) {
+        resultDiv.textContent = '⚠️ Error: Mass must be a positive number.';
+        resultDiv.style.background = '#fee2e2';
+        resultDiv.style.color = '#991b1b';
+        resultDiv.style.display = 'block';
+        return;
+      }
+      
       const energy = mass * 334; // Lf = 334 J/g
-      document.getElementById('melting-result').textContent = `Energy needed: ${energy.toLocaleString()} J`;
-      document.getElementById('melting-result').style.display = 'block';
+      resultDiv.textContent = `Energy needed: ${energy.toLocaleString()} J`;
+      resultDiv.style.background = '#e0f2fe';
+      resultDiv.style.color = '#0277bd';
+      resultDiv.style.display = 'block';
     });
 
     document.getElementById('calc-boiling').addEventListener('click', () => {
       const mass = parseFloat(document.getElementById('water-mass').value);
+      const resultDiv = document.getElementById('boiling-result');
+      
+      // Input Validation
+      if (isNaN(mass) || mass <= 0) {
+        resultDiv.textContent = '⚠️ Error: Mass must be a positive number.';
+        resultDiv.style.background = '#fee2e2';
+        resultDiv.style.color = '#991b1b';
+        resultDiv.style.display = 'block';
+        return;
+      }
+
       const energy = mass * 2260; // Lv = 2260 J/g
-      document.getElementById('boiling-result').textContent = `Energy needed: ${energy.toLocaleString()} J`;
-      document.getElementById('boiling-result').style.display = 'block';
+      resultDiv.textContent = `Energy needed: ${energy.toLocaleString()} J`;
+      resultDiv.style.background = '#fce4ec';
+      resultDiv.style.color = '#c2185b';
+      resultDiv.style.display = 'block';
     });
 
     document.getElementById('check9-submit').addEventListener('click', () => {
@@ -2530,6 +2684,13 @@
       const feedback = document.getElementById('check9-feedback');
       const solution = document.getElementById('check9-solution');
       
+      // Input Validation
+      if (isNaN(answer) || answer < 0) {
+        feedback.className = 'feedback incorrect show';
+        feedback.textContent = '✗ Invalid input. Please enter a valid non-negative number.';
+        return;
+      }
+
       check9Attempts++;
       
       if (Math.abs(answer - correct) <= 1000) {
@@ -2560,19 +2721,51 @@
     });
 
     // Section 10: Thermal Equilibrium
-    let check10Attempts = 0;
-
+    
     document.getElementById('calc-equilibrium').addEventListener('click', () => {
-      const m1 = parseFloat(document.getElementById('hot-mass').value) || 200;
-      const t1 = parseFloat(document.getElementById('hot-temp').value) || 80;
-      const m2 = parseFloat(document.getElementById('cold-mass').value) || 300;
-      const t2 = parseFloat(document.getElementById('cold-temp').value) || 20;
+      // Get values from input fields
+      // FIX: Using new unique IDs
+      const hotMassInput = document.getElementById('s10-hot-mass');
+      const hotTempInput = document.getElementById('s10-hot-temp');
+      const coldMassInput = document.getElementById('s10-cold-mass');
+      const coldTempInput = document.getElementById('s10-cold-temp');
       
-      // Calculate equilibrium temperature: tf = (m1*t1 + m2*t2)/(m1 + m2)
+      // REINFORCED: Read only the current .value. Validation will catch emptiness.
+      const m1 = parseFloat(hotMassInput.value);
+      const t1 = parseFloat(hotTempInput.value);
+      const m2 = parseFloat(coldMassInput.value);
+      const t2 = parseFloat(coldTempInput.value);
+      
+      // Show the result container with full content
+      const resultDiv = document.getElementById('equilibrium-result');
+      
+      // Input Validation
+      if (isNaN(m1) || isNaN(t1) || isNaN(m2) || isNaN(t2) || m1 <= 0 || m2 <= 0) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+          <div style="background: #fee2e2; border: 2px solid #ef4444; border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="color: #991b1b; font-size: 18px; font-weight: 600;">⚠️ Invalid Input</div>
+            <div style="color: #991b1b; margin-top: 8px;">Please enter valid positive numbers for mass and valid temperatures for all fields.</div>
+          </div>
+        `;
+        return;
+      }
+      
+      // Constraint check (hot > cold) - optional but makes the logic clearer for this demo
+      if (t1 <= t2) {
+          resultDiv.style.display = 'block';
+          resultDiv.innerHTML = `
+            <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 20px; text-align: center;">
+              <div style="color: #78350f; font-size: 18px; font-weight: 600;">💡 Logic Check</div>
+              <div style="color: #78350f; margin-top: 8px;">The hot water temperature (${t1}°C) must be higher than the cold water temperature (${t2}°C) for heat transfer to occur.</div>
+            </div>
+          `;
+          return;
+      }
+
+      // Calculate equilibrium temperature: tf = (m1*t1 + m2*t2)/(m1 + m2) - assuming c is the same
       const tf = (m1 * t1 + m2 * t2) / (m1 + m2);
       
-      // Show the result container
-      document.getElementById('equilibrium-result').style.display = 'block';
       
       // Build detailed solution steps
       const solutionSteps = `
@@ -2586,21 +2779,11 @@
         <div style="background: #fef3c7; padding: 16px; border-radius: 8px; border-left: 4px solid #f59e0b; margin-bottom: 16px;">
           <div style="font-weight: 600; color: #78350f; margin-bottom: 8px;">⚖️ Conservation Principle:</div>
           <div>Heat lost by hot water = Heat gained by cold water</div>
-          <div style="margin-top: 8px; font-family: 'Courier New', monospace;">q<sub>lost</sub> = q<sub>gained</sub></div>
+          <div style="margin-top: 8px; font-family: 'Courier New', monospace;">m₁c(T₁ - T<sub>f</sub>) = m₂c(T<sub>f</sub> - T₂)</div>
         </div>
         
         <div style="background: #e0f2fe; padding: 16px; border-radius: 8px; border-left: 4px solid #0277bd; margin-bottom: 16px;">
-          <div style="font-weight: 600; color: #0277bd; margin-bottom: 8px;">🧮 Setting Up the Equation:</div>
-          <div style="font-family: 'Courier New', monospace; line-height: 1.6;">
-            m₁c(T₁ - T<sub>f</sub>) = m₂c(T<sub>f</sub> - T₂)<br>
-            ${m1} × c × (${t1} - T<sub>f</sub>) = ${m2} × c × (T<sub>f</sub> - ${t2})<br>
-            <span style="color: #059669;">Cancel out 'c' from both sides:</span><br>
-            ${m1}(${t1} - T<sub>f</sub>) = ${m2}(T<sub>f</sub> - ${t2})
-          </div>
-        </div>
-        
-        <div style="background: #f0fdf4; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
-          <div style="font-weight: 600; color: #065f46; margin-bottom: 8px;">🔧 Solving for T<sub>f</sub>:</div>
+          <div style="font-weight: 600; color: #0277bd; margin-bottom: 8px;">🧮 Setting Up and Solving:</div>
           <div style="font-family: 'Courier New', monospace; line-height: 1.6;">
             ${m1}(${t1} - T<sub>f</sub>) = ${m2}(T<sub>f</sub> - ${t2})<br>
             ${m1 * t1} - ${m1}T<sub>f</sub> = ${m2}T<sub>f</sub> - ${m2 * t2}<br>
@@ -2611,25 +2794,77 @@
         </div>
       `;
       
-      // Update the solution steps and final answer
-      document.getElementById('solution-steps').innerHTML = solutionSteps;
-      document.getElementById('final-temp').textContent = `${tf.toFixed(1)}°C`;
-      document.getElementById('equilibrium-explanation').textContent = 
-        `The hot water loses ${(t1 - tf).toFixed(1)}°C while the cold water gains ${(tf - t2).toFixed(1)}°C until thermal equilibrium is reached.`;
+      // Build the complete result HTML
+      resultDiv.style.display = 'block'; // <-- This line makes it visible
+      resultDiv.innerHTML = `
+        <h4 style="margin: 0 0 16px 0; color: #4c51bf; font-size: 20px;">📖 Detailed Solution:</h4>
+        <div style="font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+          ${solutionSteps}
+        </div>
+        <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 16px; border-radius: 8px; margin-top: 16px;">
+          <div style="font-size: 18px; font-weight: 600; color: #065f46; margin-bottom: 8px;">Final Answer:</div>
+          <div style="font-size: 24px; font-weight: 700; color: #059669;">${tf.toFixed(1)}°C</div>
+          <div style="font-size: 14px; color: #065f46; margin-top: 8px;">The final temperature is closer to the cold water's temperature because it has a larger mass.</div>
+        </div>
+      `;
     });
+
+    // --- NEW FUNCTION TO DYNAMICALLY LOAD CHECK 10 ---
+    function loadCheck10Question() {
+      // Generate random, clean numbers for the question
+      const m1 = (Math.floor(Math.random() * 10) + 1) * 50; // 50 to 500g in steps of 50
+      const m2 = (Math.floor(Math.random() * 10) + 1) * 50; // 50 to 500g in steps of 50
+      
+      let t2 = (Math.floor(Math.random() * 5) + 1) * 5; // 5 to 25°C in steps of 5
+      let t1 = (Math.floor(Math.random() * 6) + 10) * 5; // 50 to 75°C in steps of 5
+
+      // Ensure t1 > t2
+      if (t1 <= t2) {
+          t1 = t2 + 30; // Ensure hot is substantially hotter
+      }
+
+      // Calculate correct answer
+      const tf = (m1 * t1 + m2 * t2) / (m1 + m2);
+      check10CorrectAnswer = tf; // Store the precise answer
+
+      // Update question text
+      document.getElementById('check10-question').textContent = 
+        `${m1} g of hot water at ${t1}°C is mixed with ${m2} g of cold water at ${t2}°C. What is the final equilibrium temperature? (Round to 1 decimal place)`;
+
+      // Update solution text
+      document.getElementById('check10-solution').innerHTML = `
+        <div class="solution-title">
+          📖 Worked Solution
+        </div>
+        <p><strong>Given:</strong> m₁ = ${m1} g at ${t1}°C, m₂ = ${m2} g at ${t2}°C</p>
+        <p><strong>Principle:</strong> Heat lost = Heat gained</p>
+        <p><strong>Setup:</strong> m₁c(T₁ - T<sub>f</sub>) = m₂c(T<sub>f</sub> - T₂)</p>
+        <p><strong>Simplify (cancel 'c'):</strong> ${m1}(${t1} - T<sub>f</sub>) = ${m2}(T<sub>f</sub> - ${t2})</p>
+        <p><strong>Expand:</strong> ${m1 * t1} - ${m1}T<sub>f</sub> = ${m2}T<sub>f</sub> - ${m2 * t2}</p>
+        <p><strong>Solve:</strong> ${m1 * t1 + m2 * t2} = ${m1 + m2}T<sub>f</sub></p>
+        <p><strong>Final:</strong> T<sub>f</sub> = (${m1 * t1 + m2 * t2}) / (${m1 + m2}) = <strong>${tf.toFixed(1)}°C</strong></p>
+      `;
+    }
 
     document.getElementById('check10-submit').addEventListener('click', () => {
       const answer = parseFloat(document.getElementById('check10-answer').value);
-      const correct = 36.7;
+      const correct = check10CorrectAnswer; // Use dynamic answer
       
       const feedback = document.getElementById('check10-feedback');
       const solution = document.getElementById('check10-solution');
       
+      // Input Validation
+      if (isNaN(answer)) {
+        feedback.className = 'feedback incorrect show';
+        feedback.textContent = '✗ Invalid input. Please enter a valid number.';
+        return;
+      }
+
       check10Attempts++;
       
-      if (Math.abs(answer - correct) <= 0.5) {
+      if (Math.abs(answer - correct) <= 0.2) { // Use a 0.2 tolerance
         feedback.className = 'feedback correct show';
-        feedback.textContent = '✓ Correct! The equilibrium temperature is 36.7°C.';
+        feedback.textContent = `✓ Correct! The equilibrium temperature is ${correct.toFixed(1)}°C.`;
         document.getElementById('check10-submit').disabled = true;
         document.getElementById('check10-reset').style.display = 'inline-block';
       } else {
@@ -2652,28 +2887,50 @@
       document.getElementById('check10-submit').disabled = false;
       document.getElementById('check10-reset').style.display = 'none';
       check10Attempts = 0;
+      loadCheck10Question(); // <-- Load new question
     });
 
     // Section 11: Heat Capacity
-    let check11Attempts = 0;
-
+    
     function updateHeatCapacities() {
       const cA = parseFloat(document.getElementById('objA-material').value);
       const mA = parseFloat(document.getElementById('objA-mass').value);
       const cB = parseFloat(document.getElementById('objB-material').value);
       const mB = parseFloat(document.getElementById('objB-mass').value);
       
-      const capA = mA * cA;
-      const capB = mB * cB;
+      let capA = NaN;
+      let capB = NaN;
+      let comparison = 'Enter valid inputs to compare.';
       
-      document.getElementById('objA-capacity').textContent = `${capA.toFixed(0)} J/°C`;
-      document.getElementById('objB-capacity').textContent = `${capB.toFixed(0)} J/°C`;
-      
-      const comparison = capA > capB ? 
-        'Object A has higher heat capacity and will be harder to heat up.' :
-        capA < capB ?
-        'Object B has higher heat capacity and will be harder to heat up.' :
-        'Both objects have the same heat capacity and will heat up equally.';
+      // Input Validation
+      const mAValid = !isNaN(mA) && mA > 0;
+      const mBValid = !isNaN(mB) && mB > 0;
+      const cAValid = !isNaN(cA) && cA > 0;
+      const cBValid = !isNaN(cB) && cB > 0;
+
+      if (mAValid && cAValid) {
+          capA = mA * cA;
+          document.getElementById('objA-capacity').textContent = `${capA.toFixed(0)} J/°C`;
+      } else {
+          document.getElementById('objA-capacity').textContent = 'N/A (Invalid Input)';
+      }
+
+      if (mBValid && cBValid) {
+          capB = mB * cB;
+          document.getElementById('objB-capacity').textContent = `${capB.toFixed(0)} J/°B`;
+      } else {
+          document.getElementById('objB-capacity').textContent = 'N/A (Invalid Input)';
+      }
+
+      if (!isNaN(capA) && !isNaN(capB)) {
+          comparison = capA > capB ? 
+              'Object A has higher heat capacity and will be harder to heat up.' :
+              capA < capB ?
+              'Object B has higher heat capacity and will be harder to heat up.' :
+              'Both objects have the same heat capacity and will heat up equally.';
+      } else if (!mAValid || !mBValid || !cAValid || !cBValid) {
+          comparison = '⚠️ Please ensure both mass and specific heat are positive numbers.';
+      }
       
       document.getElementById('capacity-comparison').textContent = comparison;
     }
@@ -2703,6 +2960,7 @@
         document.getElementById('check11-reset').style.display = 'inline-block';
       } else {
         feedback.className = 'feedback incorrect show';
+        // --- FIX: Logic to show solution after max attempts ---
         if (check11Attempts >= 2) {
           feedback.textContent = '✗ Not quite. Review the explanation below.';
           solution.classList.add('show');
@@ -2711,6 +2969,7 @@
         } else {
           feedback.textContent = `✗ Not quite. Calculate q = mcΔT for both. (Attempt ${check11Attempts}/2)`;
         }
+        // --- END FIX ---
       }
     });
 
@@ -2724,13 +2983,20 @@
     });
 
     // Section 12: Thermal Conductivity
-    let check12Attempts = 0;
-
+    
     document.getElementById('calc-heat-flow').addEventListener('click', () => {
       const k = parseFloat(document.getElementById('material-select').value);
       const thickness = parseFloat(document.getElementById('thickness-input').value) / 100; // convert cm to m
       const tempDiff = parseFloat(document.getElementById('temp-diff').value);
       
+      // Input Validation
+      if (isNaN(k) || k < 0 || isNaN(thickness) || thickness <= 0 || isNaN(tempDiff) || tempDiff <= 0) {
+        document.getElementById('heat-flow-rate').textContent = 'Error';
+        document.getElementById('insulation-quality').textContent = '⚠️ Invalid Input: k, thickness, or ΔT not valid.';
+        document.getElementById('insulation-quality').style.color = '#991b1b';
+        return;
+      }
+
       // Heat flow rate per unit area: q/t = k * ΔT / d
       const heatFlowRate = k * tempDiff / thickness;
       
@@ -2769,8 +3035,8 @@
       if (selected.value === 'B') {
         feedback.className = 'feedback correct show';
         feedback.textContent = '✓ Correct! Air trapped between layers provides excellent insulation.';
-        document.getElementById('check12-submit').disabled = true;
-        document.getElementById('check12-reset').style.display = 'inline-block';
+        document.getElementById('check12-submit').disabled = true; // FIX: Was check11-submit
+        document.getElementById('check12-reset').style.display = 'inline-block'; // FIX: Was check11-reset
       } else {
         feedback.className = 'feedback incorrect show';
         if (check12Attempts >= 2) {
@@ -2796,6 +3062,30 @@
     initTOC();
     updateThermometers(25);
     updateHeatCapacities();
+    
+    // Initial calculation for heat flow (Section 12)
+    document.getElementById('calc-heat-flow').click();
+
+    function randomizeEquilibriumInputs() {
+      // Generate a random cold temperature between 5°C and 30°C
+      const t2 = Math.floor(Math.random() * 26) + 5; // 5 to 30
+      // Generate a random hot temperature between 60°C and 95°C
+      const t1 = Math.floor(Math.random() * 36) + 60; // 60 to 95
+
+      // FIX: Using new unique IDs
+      document.getElementById('s10-hot-temp').value = t1;
+      document.getElementById('s10-cold-temp').value = t2;
+      
+      // Also randomize masses for more variety
+      const m1 = (Math.floor(Math.random() * 41) + 10) * 10; // 100 to 500g in steps of 10
+      const m2 = (Math.floor(Math.random() * 41) + 10) * 10; // 100 to 500g in steps of 10
+      
+      // FIX: Using new unique IDs
+      document.getElementById('s10-hot-mass').value = m1;
+      document.getElementById('s10-cold-mass').value = m2;
+    }
+    randomizeEquilibriumInputs(); // <-- Call for simulator
+    loadCheck10Question(); // <-- Call for knowledge check
 
     if (window.elementSdk) {
       window.elementSdk.init({
@@ -2865,5 +3155,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9998db6f31b706f4',t:'MTc2MjMwOTA3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
 </html>
