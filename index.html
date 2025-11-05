@@ -641,33 +641,52 @@
     }
 
     .block {
-      width: 120px;
-      height: 120px;
-      border-radius: 12px;
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 24px;
-      border: 3px solid #2d3748;
+      border: 4px solid #2d3748;
       position: relative;
+      transition: all 0.8s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     .block-hot {
       background: linear-gradient(135deg, #fca5a5, #ef4444);
       color: #7f1d1d;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
     }
 
     .block-cold {
       background: linear-gradient(135deg, #93c5fd, #3b82f6);
       color: #1e3a8a;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .heat-transfer-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 100px;
+      height: 140px;
     }
 
     .arrow {
-      font-size: 48px;
-      color: #f59e0b;
+      text-align: center;
       animation: pulse 1s infinite;
+    }
+
+    .contact-indicator {
+      text-align: center;
+      padding: 12px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 8px;
+      border: 2px solid #10b981;
     }
 
     @keyframes pulse {
@@ -1027,32 +1046,84 @@
       <div class="sim-title">
        🔥 Heat Flow Demonstration
       </div>
-      <p style="font-size: 16px; color: #4a5568; margin-bottom: 24px;">See how heat flows from hot to cold objects when they're in contact.</p>
+      <p style="font-size: 16px; color: #4a5568; margin-bottom: 24px;">See how heat flows from hot to cold objects when they're in contact. Watch the temperatures and colors change!</p>
       <div class="heat-flow-demo">
-       <div class="block block-hot">
+       <div class="block block-hot" id="hot-block">
         <div style="font-size: 14px; margin-bottom: 8px;">
          Hot Block
         </div>
-        <div>
+        <div id="hot-temp" style="font-size: 24px; font-weight: 700;">
          80°C
         </div>
+        <div style="font-size: 12px; margin-top: 4px; opacity: 0.8;">
+         Aluminum
+        </div>
        </div>
-       <div class="arrow" id="heat-arrow" style="display: none;">
-        →
+       <div class="heat-transfer-area" id="transfer-area">
+        <div class="arrow" id="heat-arrow" style="display: none;"><span style="font-size: 24px;">🔥</span>
+         <div style="font-size: 12px; margin-top: 4px;">
+          Heat Flow
+         </div>
+        </div>
+        <div class="contact-indicator" id="contact-indicator" style="display: none;">
+         <div style="font-size: 16px; font-weight: 600; color: #059669;">
+          In Contact
+         </div>
+         <div style="font-size: 12px; color: #065f46;">
+          Heat Transferring...
+         </div>
+        </div>
        </div>
-       <div class="block block-cold">
+       <div class="block block-cold" id="cold-block">
         <div style="font-size: 14px; margin-bottom: 8px;">
          Cold Block
         </div>
-        <div>
+        <div id="cold-temp" style="font-size: 24px; font-weight: 700;">
          20°C
+        </div>
+        <div style="font-size: 12px; margin-top: 4px; opacity: 0.8;">
+         Aluminum
         </div>
        </div>
       </div>
-      <div style="text-align: center; margin-top: 24px;"><button class="btn" id="contact-btn">Bring Blocks Into Contact</button> <button class="btn btn-secondary" id="insulate-btn" style="display: none;">Insulate Blocks</button>
+      <div style="text-align: center; margin-top: 24px;"><button class="btn" id="contact-btn">Bring Blocks Into Contact</button> <button class="btn btn-secondary" id="insulate-btn" style="display: none;">Separate Blocks</button> <button class="btn btn-secondary" id="reset-demo-btn" style="display: none; margin-left: 12px;">Reset Demo</button>
+      </div>
+      <div id="temperature-display" style="display: none; margin-top: 20px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #4c51bf;">
+       <h4 style="margin: 0 0 16px 0; color: #4c51bf; text-align: center;">Temperature Changes Over Time</h4>
+       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center;">
+        <div>
+         <div style="font-size: 14px; color: #4a5568; margin-bottom: 4px;">
+          Hot Block
+         </div>
+         <div id="hot-display" style="font-size: 20px; font-weight: 700; color: #dc2626;">
+          80.0°C
+         </div>
+         <div id="hot-change" style="font-size: 12px; color: #4a5568;"></div>
+        </div>
+        <div>
+         <div style="font-size: 14px; color: #4a5568; margin-bottom: 4px;">
+          Equilibrium
+         </div>
+         <div id="equilibrium-display" style="font-size: 20px; font-weight: 700; color: #059669;">
+          --°C
+         </div>
+         <div style="font-size: 12px; color: #4a5568;">
+          Final Temperature
+         </div>
+        </div>
+        <div>
+         <div style="font-size: 14px; color: #4a5568; margin-bottom: 4px;">
+          Cold Block
+         </div>
+         <div id="cold-display" style="font-size: 20px; font-weight: 700; color: #2563eb;">
+          20.0°C
+         </div>
+         <div id="cold-change" style="font-size: 12px; color: #4a5568;"></div>
+        </div>
+       </div>
       </div>
       <div id="heat-explanation" style="display: none; margin-top: 24px; padding: 20px; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
-       <p style="margin: 0; color: #78350f; font-weight: 600;">Heat flows from the hot block (higher temperature) to the cold block (lower temperature) until they reach thermal equilibrium. Temperature is the measure of average kinetic energy, while heat is the energy being transferred.</p>
+       <p style="margin: 0; color: #78350f; font-weight: 600;">Heat flows from the hot block (higher temperature) to the cold block (lower temperature) until they reach thermal equilibrium at 50°C. Temperature measures average kinetic energy, while heat is the energy being transferred between objects.</p>
       </div>
      </div>
      <div class="check-section">
@@ -1327,16 +1398,16 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
        <div style="background: linear-gradient(135deg, #fca5a5, #ef4444); padding: 20px; border-radius: 8px; color: white;">
         <h4 style="margin: 0 0 16px 0; color: white;">🔥 Hot Water</h4>
-        <div style="margin-bottom: 12px;"><label for="hot-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="hot-mass" value="200" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px;" aria-label="Hot water mass">
+        <div style="margin-bottom: 12px;"><label for="hot-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="hot-mass" value="200" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water mass">
         </div>
-        <div><label for="hot-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="hot-temp" value="80" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px;" aria-label="Hot water temperature">
+        <div><label for="hot-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="hot-temp" value="80" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Hot water temperature">
         </div>
        </div>
        <div style="background: linear-gradient(135deg, #93c5fd, #3b82f6); padding: 20px; border-radius: 8px; color: white;">
         <h4 style="margin: 0 0 16px 0; color: white;">❄️ Cold Water</h4>
-        <div style="margin-bottom: 12px;"><label for="cold-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="cold-mass" value="300" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px;" aria-label="Cold water mass">
+        <div style="margin-bottom: 12px;"><label for="cold-mass" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Mass (g):</label> <input type="number" id="cold-mass" value="300" step="10" min="0" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water mass">
         </div>
-        <div><label for="cold-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="cold-temp" value="20" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px;" aria-label="Cold water temperature">
+        <div><label for="cold-temp" style="display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px;">Temperature (°C):</label> <input type="number" id="cold-temp" value="20" step="1" style="width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; color: #1a202c; background: white;" aria-label="Cold water temperature">
         </div>
        </div>
       </div>
@@ -1624,10 +1695,10 @@
       { id: 6, title: "LO6: Specific & Latent Heat" },
       { id: 7, title: "LO7: Heat Transfer Modes" },
       { id: 8, title: "LO8: Heat Transfer Equation" },
-      { id: 9, title: "LO9: Coming Soon" },
-      { id: 10, title: "LO10: Coming Soon" },
-      { id: 11, title: "LO11: Coming Soon" },
-      { id: 12, title: "LO12: Coming Soon" },
+      { id: 9, title: "LO9: Phase Changes & Latent Heat" },
+      { id: 10, title: "LO10: Thermal Equilibrium" },
+      { id: 11, title: "LO11: Heat Capacity vs Specific Heat" },
+      { id: 12, title: "LO12: Thermal Conductivity" },
       { id: 13, title: "Wrap-Up" }
     ];
 
@@ -2021,18 +2092,116 @@
       check4Attempts = 0;
     });
 
+    let heatFlowInterval;
+    let hotTemp = 80;
+    let coldTemp = 20;
+    let isInContact = false;
+
+    function updateBlockColors(hotT, coldT) {
+      const hotBlock = document.getElementById('hot-block');
+      const coldBlock = document.getElementById('cold-block');
+      
+      // Calculate color intensity based on temperature
+      const hotIntensity = Math.max(0, Math.min(1, (hotT - 20) / 60));
+      const coldIntensity = Math.max(0, Math.min(1, (coldT - 20) / 60));
+      
+      // Hot block: red to orange as it cools
+      const hotRed = Math.floor(239 - (hotIntensity * 50));
+      const hotGreen = Math.floor(68 + (hotIntensity * 100));
+      const hotBlue = 68;
+      
+      // Cold block: blue to purple as it warms
+      const coldRed = Math.floor(59 + (coldIntensity * 100));
+      const coldGreen = Math.floor(130 - (coldIntensity * 50));
+      const coldBlue = 246;
+      
+      hotBlock.style.background = `linear-gradient(135deg, rgb(${hotRed + 20}, ${hotGreen + 20}, ${hotBlue + 20}), rgb(${hotRed}, ${hotGreen}, ${hotBlue}))`;
+      coldBlock.style.background = `linear-gradient(135deg, rgb(${coldRed + 20}, ${coldGreen + 20}, ${coldBlue + 20}), rgb(${coldRed}, ${coldGreen}, ${coldBlue}))`;
+    }
+
+    function animateHeatTransfer() {
+      if (!isInContact) return;
+      
+      const equilibrium = (hotTemp + coldTemp) / 2;
+      const rate = 0.5; // Temperature change rate per step
+      
+      if (Math.abs(hotTemp - equilibrium) > 0.1) {
+        hotTemp += (equilibrium - hotTemp) * rate;
+        coldTemp += (equilibrium - coldTemp) * rate;
+        
+        // Update displays
+        document.getElementById('hot-temp').textContent = `${hotTemp.toFixed(1)}°C`;
+        document.getElementById('cold-temp').textContent = `${coldTemp.toFixed(1)}°C`;
+        document.getElementById('hot-display').textContent = `${hotTemp.toFixed(1)}°C`;
+        document.getElementById('cold-display').textContent = `${coldTemp.toFixed(1)}°C`;
+        
+        // Update change indicators
+        const hotChange = hotTemp - 80;
+        const coldChange = coldTemp - 20;
+        document.getElementById('hot-change').textContent = `${hotChange >= 0 ? '+' : ''}${hotChange.toFixed(1)}°C`;
+        document.getElementById('cold-change').textContent = `${coldChange >= 0 ? '+' : ''}${coldChange.toFixed(1)}°C`;
+        
+        // Update equilibrium display
+        document.getElementById('equilibrium-display').textContent = `${equilibrium.toFixed(1)}°C`;
+        
+        // Update colors
+        updateBlockColors(hotTemp, coldTemp);
+      } else {
+        // Reached equilibrium
+        clearInterval(heatFlowInterval);
+        document.getElementById('heat-explanation').style.display = 'block';
+        document.getElementById('reset-demo-btn').style.display = 'inline-block';
+      }
+    }
+
     document.getElementById('contact-btn').addEventListener('click', () => {
+      isInContact = true;
       document.getElementById('heat-arrow').style.display = 'block';
-      document.getElementById('heat-explanation').style.display = 'block';
+      document.getElementById('contact-indicator').style.display = 'block';
+      document.getElementById('temperature-display').style.display = 'block';
       document.getElementById('contact-btn').style.display = 'none';
       document.getElementById('insulate-btn').style.display = 'inline-block';
+      
+      // Start animation
+      heatFlowInterval = setInterval(animateHeatTransfer, 100);
     });
 
     document.getElementById('insulate-btn').addEventListener('click', () => {
+      isInContact = false;
+      clearInterval(heatFlowInterval);
       document.getElementById('heat-arrow').style.display = 'none';
+      document.getElementById('contact-indicator').style.display = 'none';
+      document.getElementById('contact-btn').style.display = 'inline-block';
+      document.getElementById('insulate-btn').style.display = 'none';
+    });
+
+    document.getElementById('reset-demo-btn').addEventListener('click', () => {
+      // Reset to initial state
+      isInContact = false;
+      hotTemp = 80;
+      coldTemp = 20;
+      clearInterval(heatFlowInterval);
+      
+      // Reset displays
+      document.getElementById('hot-temp').textContent = '80°C';
+      document.getElementById('cold-temp').textContent = '20°C';
+      document.getElementById('hot-display').textContent = '80.0°C';
+      document.getElementById('cold-display').textContent = '20.0°C';
+      document.getElementById('equilibrium-display').textContent = '--°C';
+      document.getElementById('hot-change').textContent = '';
+      document.getElementById('cold-change').textContent = '';
+      
+      // Reset colors
+      updateBlockColors(80, 20);
+      
+      // Reset UI
+      document.getElementById('heat-arrow').style.display = 'none';
+      document.getElementById('contact-indicator').style.display = 'none';
+      document.getElementById('temperature-display').style.display = 'none';
       document.getElementById('heat-explanation').style.display = 'none';
       document.getElementById('contact-btn').style.display = 'inline-block';
       document.getElementById('insulate-btn').style.display = 'none';
+      document.getElementById('reset-demo-btn').style.display = 'none';
     });
 
     let draggedElement = null;
@@ -2653,5 +2822,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99987391b1684511',t:'MTc2MjMwNDgxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9998b793a57fab5e',t:'MTc2MjMwNzYwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
